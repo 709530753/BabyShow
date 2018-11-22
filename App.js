@@ -18,13 +18,11 @@ import {
 }from 'react-native-deprecated-custom-components';
 
 
-
 import XCTabbar from './Component/Tabbar/XCTabbar'
 import List from './Component/List/List'
 import Edit from './Component/Edit/Edit'
 import Picture from  './Component/Picture/Picture'
 import Account from './Component/Account/Account'
-// import HKTabBar from './HKTabBar'
 
 import ScrollabelTabView ,{DefaultTabBar,ScrollableTabBar} from 'react-native-scrollable-tab-view'
 

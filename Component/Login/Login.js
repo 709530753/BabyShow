@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import {Dimensions} from 'react-native';
 import NavTitleView from './../List/NavTitleView'
+import storage from './../Storage/Storage'
 
 import {
     Platform,
@@ -92,9 +93,26 @@ export default class Login extends Component {
         let username = this.state.username;
         let password = this.state.password;
 
+        if (username == "") {
+            AlertIOS.alert("请输入用户名!")
+            return
+        }
+
+        if (password == "") {
+            AlertIOS.alert("请输入密码!")
+            return
+        }
+
         if (username=="123456" && password == "123456"){
             // AlertIOS.alert(username,password);
             AlertIOS.alert("登录成功!")
+
+            storage.save({
+                key:"userToken",
+                data:username,
+                expires:null,
+            })
+
              this._back();
         } else  {
             AlertIOS.alert("登录失败!")
@@ -103,6 +121,13 @@ export default class Login extends Component {
     }
 
     _back(){
+
+        let token= global.storage.load({
+            key:'userToken'
+        })
+
+        AlertIOS.alert(token);
+
         this.props.navigator.pop();
     }
 
@@ -176,5 +201,8 @@ const styles = StyleSheet.create({
         fontSize:20,
         textAlign:'center',
         paddingTop:10,
+        color:'#fff',
+        borderWidth:1,
+        borderRadius:5,
     }
 });
