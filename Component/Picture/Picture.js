@@ -6,16 +6,54 @@
 import React, { Component } from 'react';
 import {Dimensions} from 'react-native';
 
+import PictureHeader from './PictureHeader';
+import PictureItem from './PictureItem'
+
+/*
+* 本地数据加载方法
+* */
+import JSONData from './package.json'
+
 import {
     Platform,
     StyleSheet,
     Text,
-    View
+    View,
+    ListView,
 } from 'react-native';
 
 var {height, width} = Dimensions.get('window');
 
+
 export default class Picture extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state={
+            dataSource:new ListView.DataSource({
+                rowHasChanged:(r1:r2)=>r1!==r2,
+            }),
+        };
+    }
+
+    componentDidMount(){
+        this._loadData();
+    }
+
+    /*
+    * 获取数据
+    * */
+    _loadData(){
+        console.log("JSONData : " + JSONData.data);
+
+        this.setState({
+            dataSource:this.state.dataSource.cloneWithRows(
+                JSONData.data
+            )
+        })
+
+    }
 
     render(){
         return(
@@ -23,13 +61,21 @@ export default class Picture extends Component {
                 <View style={styles.navStyle} >
                     <Text style={styles.navTitle}>图片</Text>
                 </View>
-                <Text>
-                    Picture
-                </Text>
+                <PictureHeader/>
+                <ListView dataSource={this.state.dataSource}
+                          renderRow={this._renderRow}  />
             </View>
         )
     }
 
+    _renderRow = (rowData)=> {
+
+        return(
+            <PictureItem
+                rowData={rowData}
+            />
+        )
+    };
 }
 
 const styles = StyleSheet.create({

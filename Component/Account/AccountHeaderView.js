@@ -16,13 +16,15 @@ import {
 
 var {height, width} = Dimensions.get('window');
 
+let headerHeigh = 150;
+
 export default class AccountHeaderView extends Component {
 
     render(){
         return(
         <TouchableOpacity onPress={this.props.headerClick}>
             <View style={styles.container}>
-                <Image source={require('../resources/aaa.jpg')} style={styles.headerImgStyle}/>
+                <Image source={require('../resources/cc-head.png')} style={styles.headerImgStyle}/>
                 <View style={styles.accountStyleView}>
                     <Text style={styles.usernameStyle}>
                         M·Y·X·C
@@ -32,7 +34,7 @@ export default class AccountHeaderView extends Component {
                     </Text>
                 </View>
 
-                <Image source={require('../resources/aaa.jpg')} style={styles.qrStyle}/>
+                <Image source={require('../resources/arrow.png')} style={styles.qrStyle}/>
 
             </View>
         </TouchableOpacity>
@@ -43,19 +45,19 @@ export default class AccountHeaderView extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#d00',
-        height:100,
+        backgroundColor: '#d4237a',
+        height:headerHeigh,
         flexDirection:'row',
-
+        justifyContent:"center"
     },
     headerImgStyle:{
         width:50,
         height:50,
         left:20,
-        top:20,
+        top:(headerHeigh - 50)/2,
     },
     accountStyleView:{
-        top:20,
+        top:(headerHeigh - 50)/2,
         flexDirection:'column',
         height:50,
         width:width - 70,
@@ -74,10 +76,10 @@ const styles = StyleSheet.create({
         color:'#dddddd'
     },
     qrStyle:{
-        width:40,
-        height:40,
-        right:30,
-        top:30,
+        width:20,
+        height:20,
+        right:10,
+        top:(headerHeigh - 20)/2,
 
     }
 

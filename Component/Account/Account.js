@@ -26,25 +26,56 @@ export default class Account extends Component {
 
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows([{"title":"钱包","url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"},
-                                          {"title":"收藏","url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"},
-                                          {"title":"相册","url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"},
-                                          {"title":"卡包","url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"},
-                                          {"title":"表情","url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"},
-                                          {"title":"设置","url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"}])
+            dataSource: ds
         }
      }
 
+    componentWillMount() {
+        console.log("componentWillMount");
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount");
+
+        this._loadData();
+    }
+
+    componentWillUpdate() {
+        console.log("componentWillUpdate");
+    }
+
+    componentDidUpdate() {
+        console.log("componentDidUpdate");
+    }
+
+    /*
+    * 请求数据
+    * */
+    _loadData() {
+
+        let url = "http://localhost:9528/json/babyshow/mine.json";
+
+        console.log("URL :" + url);
+
+        fetch(url).then((response) => response.json())
+            .then((responseJson) => {
+            console.log(responseJson);
+
+            this.setState({
+                dataSource:this.state.dataSource.cloneWithRows(
+                    responseJson
+                )
+            })
+
+            }).catch((error) =>{
+            console.log("error: " + error);
+        });
+
+    }
 
     render(){
         return(
             <View style={styles.container}>
-                <NavTitleView
-                    navTitle={"我的"}
-                    backTitle={""}
-                    back={()=>this._back()}/>
-
-                />
                 <AccountHeaderView
                     headerClick={()=>this._loginClick()}
                 />
@@ -66,15 +97,19 @@ export default class Account extends Component {
     }
 
     _itemClick() {
-        let {navigator} = this.props;
-        if (navigator) {
-            navigator.push({
-                component:Login
-            })
-        }
+
+        console.log("_itemClick : ");
+
+        // let {navigator} = this.props;
+        // if (navigator) {
+        //     navigator.push({
+        //         component:Login
+        //     })
+        // }
     }
 
     _renderRow = (rowData)=> {
+        console.log("rowData : " + rowData.url);
         return (
                 <AccountItem
                     rowData={rowData}

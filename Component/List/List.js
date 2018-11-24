@@ -47,7 +47,7 @@ export default class List extends Component {
 
     _loadData(){
 
-        fetch('http://localhost:9527/serverstation/queryMaintenanceItem')
+        fetch('http://localhost:9528/json/babyshow/video.json')
             .then((response) => response.json())
             .then((responseJson) => {
                 console.log(responseJson);

@@ -64,25 +64,25 @@ export default class Detail extends Component {
                 navTitle={"详情"}
                 backTitle={"back"}
                 back={()=>this._back()}/>
-                {/*<WebView*/}
-                    {/*source={{uri:'http://www.baidu.com'}}*/}
-                    {/*style={styles.webViewStyle}*/}
-                    {/**/}
-                {/*/>*/}
-              <Video
-                  source={{uri:'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'}}
-                  style={styles.videoStyle}
-                  rate={this.state.rate}
-                  paused={this.state.paused}
-                  volume={this.state.volume}
-                  muted={this.state.muted}
-                  resizeMode={this.state.resizeMode}
-                  onLoad={this.onLoad}
-                  onBuffer={this.onBuffer}
-                  onProgress={this.onProgress}
-                  onEnd={() => { AlertIOS.alert('Done!') }}
-                  repeat={false}
-              />
+                <WebView
+                    source={{uri:'http://www.baidu.com'}}
+                    style={styles.webViewStyle}
+
+                />
+              {/*<Video*/}
+                  {/*source={{uri:'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'}}*/}
+                  {/*style={styles.videoStyle}*/}
+                  {/*rate={this.state.rate}*/}
+                  {/*paused={this.state.paused}*/}
+                  {/*volume={this.state.volume}*/}
+                  {/*muted={this.state.muted}*/}
+                  {/*resizeMode={this.state.resizeMode}*/}
+                  {/*onLoad={this.onLoad}*/}
+                  {/*onBuffer={this.onBuffer}*/}
+                  {/*onProgress={this.onProgress}*/}
+                  {/*onEnd={() => { AlertIOS.alert('Done!') }}*/}
+                  {/*repeat={false}*/}
+              {/*/>*/}
             </View>
         );
     }
