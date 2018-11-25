@@ -37,16 +37,23 @@ export default class App extends Component<Props> {
         }
     }
 
+    hiddenTabbar = (hidden)=> {
+        this.setState({
+            hiddenTab:hidden
+        })
+}
+
     render() {
         let tabNames = this.state.tabNames;
         let tabIconNames = this.state.tabIconNames;
         return (
             <ScrollabelTabView
-                renderTabBar={() => <XCTabbar tabNames={tabNames} tabIconNames={tabIconNames}/>}
+                renderTabBar={() => <XCTabbar ref="tabbar"
+                    tabNames={tabNames} tabIconNames={tabIconNames}/>}
                 tabBarPosition="bottom"
                 scrollWithoutAnimation={true}
                 locked={true}
-            >
+                >
               <Navigator
                   tabLabel="list"
                   initialRoute={{
@@ -54,10 +61,10 @@ export default class App extends Component<Props> {
                       component:List,
                       params:{
                           title:'视频列表'
-                      }
+                  }
                   }}
                   renderScene={(route,navigator) =>
-                      <route.component {...route.params} navigator={navigator} />}
+                      <route.component {...route.params} navigator={navigator}/>}
 
               />
 
@@ -70,7 +77,7 @@ export default class App extends Component<Props> {
                       component:Edit,
                       params:{
                           title:'编辑'
-                      }
+                  }
                   }}
                   renderScene={(route,navigator) =>
                       <route.component {...route.params} navigator={navigator} />}
@@ -96,6 +103,8 @@ export default class App extends Component<Props> {
             </ScrollabelTabView>
         );
     }
+
+
 }
 
 const styles = StyleSheet.create({

@@ -27,9 +27,17 @@ export default class XCTabbar extends Component {
         // tabIconNames:React.PropTypes.array,//Item图片的名称
     };
 
+    constructor(props){
+        super(props)
+        this.state={
+            hiddenTab:false
+        }
+    }
+
     render() {
+        var bottom = this.state.hiddenTab==true?-50:0;
         return (
-            <View style={styles.tabsStyle}>
+            <View style={[styles.tabsStyle,{marginBottom:bottom}]}>
                 {/*返回一个一个的Item*/}
                 {this.props.tabs.map((tab,i)=>this.renderItem(tab,i))}
             </View>

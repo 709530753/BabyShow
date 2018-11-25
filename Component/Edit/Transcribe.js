@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Dimensions } from  'react-native';
 
-// import Camera from 'react-native-camera';
+import Camera from 'react-native-camera';
 
 import {
     StyleSheet,
@@ -19,21 +19,21 @@ export default class Transcribe extends Component {
     constructor(props) {
         super(props)
         this.state={
-            // cameraType:Camera.constants.Type.back
+            cameraType:Camera.constants.Type.back
         };
     }
 
     render(){
         return(
             <View style={styles.container}>
-                {/*<Camera*/}
-                    {/*ref={(cam) => {*/}
-                        {/*this.camera = cam;*/}
-                    {/*}}*/}
-                    {/*style={styles.preview}*/}
-                    {/*type={this.state.cameraType}*/}
-                    {/*aspect={Camera.constants.Aspect.fill}>*/}
-                {/*</Camera>*/}
+                <Camera
+                    ref={(cam) => {
+                        this.camera = cam;
+                    }}
+                    style={styles.preview}
+                    type={this.state.cameraType}
+                    aspect={Camera.constants.Aspect.fill}>
+                </Camera>
             </View>
         )
     }

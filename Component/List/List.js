@@ -42,6 +42,9 @@ export default class List extends Component {
     }
 
     componentDidMount(){
+
+        console.log("name :" + this.props.hiddenTab);
+
        this._loadData()
     }
 
@@ -109,6 +112,7 @@ export default class List extends Component {
         let {navigator} = this.props;
 
         if (navigator) {
+            this.props.hiddenTabbar(true)
             navigator.push({
                 component:Detail,
                 params:{
