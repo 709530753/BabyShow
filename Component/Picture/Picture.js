@@ -7,8 +7,10 @@ import React, { Component } from 'react';
 import {Dimensions} from 'react-native';
 
 import PictureHeader from './PictureHeader';
-import PictureItem from './PictureItem'
-import Constant from './../common/constant'
+import PictureItem from './PictureItem';
+import Constant from './../common/constant';
+import URL from './../common/url';
+
 
 /*
 * 本地数据加载方法
@@ -55,19 +57,26 @@ export default class Picture extends Component {
     * 获取数据
     * */
     _loadData(){
-        console.log("JSONData : " + JSONData.data.photoAlbum[0].time);
-        console.log("photograph : " + JSONData.data.photograph[0].time);
 
-        this.setState({
-            photoAlbum:this.state.photoAlbum.cloneWithRows(
-                JSONData.data.photoAlbum
-            ),
-            photograph:this.state.photograph.cloneWithRows(
-                JSONData.data.photograph
-            )
-        })
+        fetch(URL.picture).then((response) => response.json())
+            .then((responseJson) => {
+            console.log('responseJson :' + responseJson.data.photograph)
+
+                this.setState({
+                    photoAlbum:this.state.photoAlbum.cloneWithRows(
+                        responseJson.data.photoAlbum
+                    ),
+                    photograph:this.state.photograph.cloneWithRows(
+                        responseJson.data.photograph
+                    )
+                })
+            }).catch((error) => {
+            console.log("error : " + error);
+        }) ;
 
     }
+
+
 
     render(){
         return(

@@ -44,7 +44,6 @@ export default class PictureItem extends Component {
             <View style={styles.container}>
                 <Text style={styles.timeStyle}>{this.state.rowData.time}</Text>
                 <ListView
-
                     contentContainerStyle={styles.listViewStyle}
                     dataSource={this.state.dataSource}
                     renderRow={this._renderRow}/>
@@ -80,11 +79,11 @@ const styles = StyleSheet.create({
         backgroundColor:'#f5f5f5'
     },
     itemStyle:{
-      width:width/3,
+        width:width/3,
         height:width/3,
     },
     imageStyle:{
-      marginTop:10,
+        marginTop:10,
         marginLeft:10,
         width:width/3 - 20,
         height:width/3 - 20,
