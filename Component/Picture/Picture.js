@@ -8,6 +8,7 @@ import {Dimensions} from 'react-native';
 
 import PictureHeader from './PictureHeader';
 import PictureItem from './PictureItem'
+import Constant from './../common/constant'
 
 /*
 * 本地数据加载方法
@@ -20,9 +21,14 @@ import {
     Text,
     View,
     ListView,
+    ScrollView
 } from 'react-native';
 
 var {height, width} = Dimensions.get('window');
+var currentSelectedIndex = 0;
+let headerheigh = 45;
+
+let scrollviewHeigh = height - Constant.height.navHeigh - Constant.height.tabbarHeign - headerheigh;
 
 
 export default class Picture extends Component {
@@ -31,7 +37,11 @@ export default class Picture extends Component {
         super(props)
 
         this.state={
-            dataSource:new ListView.DataSource({
+            currentSelectedIndex:currentSelectedIndex,
+            photoAlbum:new ListView.DataSource({
+                rowHasChanged:(r1:r2)=>r1!==r2,
+            }),
+            photograph:new ListView.DataSource({
                 rowHasChanged:(r1:r2)=>r1!==r2,
             }),
         };
@@ -45,11 +55,15 @@ export default class Picture extends Component {
     * 获取数据
     * */
     _loadData(){
-        console.log("JSONData : " + JSONData.data);
+        console.log("JSONData : " + JSONData.data.photoAlbum[0].time);
+        console.log("photograph : " + JSONData.data.photograph[0].time);
 
         this.setState({
-            dataSource:this.state.dataSource.cloneWithRows(
-                JSONData.data
+            photoAlbum:this.state.photoAlbum.cloneWithRows(
+                JSONData.data.photoAlbum
+            ),
+            photograph:this.state.photograph.cloneWithRows(
+                JSONData.data.photograph
             )
         })
 
@@ -61,12 +75,63 @@ export default class Picture extends Component {
                 <View style={styles.navStyle} >
                     <Text style={styles.navTitle}>图片</Text>
                 </View>
-                <PictureHeader/>
-                <ListView dataSource={this.state.dataSource}
-                          renderRow={this._renderRow}  />
+                <PictureHeader ref="PictureHeader"
+                    selectedItemClicked={(index)=>this._selectedItemClicked(index)}
+                />
+                <ScrollView ref="ScrollView"
+                    style={styles.scrollViewStyle}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={true}
+                            pagingEnabled={true}
+                            onScrollEndDrag={(e)=>this._onScrollEndDrag(e)}
+                            onMomentumScrollEnd={(e)=>this._onAnimationEnd(e)}
+                >
+                    <View style={styles.photoAlbumStyle}>
+                        <ListView dataSource={this.state.photoAlbum}
+                                  renderRow={this._renderRow}  />
+                    </View>
+                    <View style={styles.photographStyle}>
+                        <ListView dataSource={this.state.photograph}
+                                  renderRow={this._renderRow}  />
+                    </View>
+
+                </ScrollView>
+
             </View>
         )
     }
+
+    _onAnimationEnd = (e) => {
+        console.log("_onAnimationEnd " + e.nativeEvent.contentOffset.x);
+
+        let OffsetX = e.nativeEvent.contentOffset.x
+        let pageIndex = OffsetX/width;
+
+
+        let pictureHeader = this.refs.PictureHeader;
+
+        pictureHeader._setState(pageIndex);
+
+    }
+
+    /*
+    * 拖动结束
+    * */
+    _onScrollEndDrag = (e)=> {
+        console.log("_onScrollEndDrag" + e.nativeEvent.contentOffset.x);
+
+
+    }
+
+    _selectedItemClicked = (index) => {
+        console.log("_selectedItemClicked " + index);
+        currentSelectedIndex = index;
+        var scrollView = this.refs.ScrollView;//设置ref属性
+
+        let offsetX = index * width;
+        scrollView.scrollTo({x: offsetX, y:0, animated:true});
+
+    };
 
     _renderRow = (rowData)=> {
 
@@ -79,6 +144,7 @@ export default class Picture extends Component {
 }
 
 const styles = StyleSheet.create({
+
     container: {
         flex: 1
     },
@@ -92,8 +158,22 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     navTitle:{
+        marginTop:12,
         fontSize:18,
         textAlign:'center',
         width:width,
+    },
+    scrollViewStyle:{
+
+    },
+    photoAlbumStyle:{
+        height:scrollviewHeigh,
+        width:width,
+    },
+    photographStyle:{
+        height:scrollviewHeigh,
+        width:width,
     }
+
+
 });

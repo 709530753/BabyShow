@@ -8,6 +8,7 @@ import NavTitleView from './../List/NavTitleView'
 import AccountHeaderView from './AccountHeaderView'
 import AccountItem from './AccountItem'
 import Login from  './../Login/Login'
+import URL from '../common/url'
 
 import {
     Platform,
@@ -53,7 +54,7 @@ export default class Account extends Component {
     * */
     _loadData() {
 
-        let url = "http://localhost:9528/json/babyshow/mine.json";
+        let url = URL.mine;
 
         console.log("URL :" + url);
 

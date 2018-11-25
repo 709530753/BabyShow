@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     navTitle:{
+        marginTop:12,
         fontSize:18,
         textAlign:'center',
         width:width,

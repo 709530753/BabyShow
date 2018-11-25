@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     navTitle:{
     fontSize:18,
-        marginBottom:-10,
+        marginBottom:-15,
         textAlign:"center",
         width:width - 80,
     },
