@@ -42,7 +42,13 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		4FB5285903884BF5BFFB090F /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D10D9E1AA9F4400BF006AA7 /* libRCTVideo.a */; };
 		522BC30B21AAA4CE00048AAA /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522BC2E521AAA4B800048AAA /* libRCTCameraRoll.a */; };
+		523BA48C21BAA94600C61DCE /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = 523BA48B21BAA94500C61DCE /* bundle */; };
 		52D68497214E5BB00067AAF3 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D68494214E5B770067AAF3 /* libRCTVideo.a */; };
+		52E1393F21AFB07200B5A59B /* RNIOSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E1393E21AFB07200B5A59B /* RNIOSLog.m */; };
+		52E1397C21AFCA6500B5A59B /* OCRN.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E1397B21AFCA6500B5A59B /* OCRN.m */; };
+		52E139A921AFCB7700B5A59B /* RNOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E139A821AFCB7700B5A59B /* RNOC.m */; };
+		52E139AC21AFCEDA00B5A59B /* RNIOSAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E139AB21AFCEDA00B5A59B /* RNIOSAlert.m */; };
+		52E139AF21AFEA5E00B5A59B /* NextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E139AE21AFEA5E00B5A59B /* NextViewController.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		7167E58E49524BAF99D3D9EE /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B592F76B35643F18F6FC6D5 /* FontAwesome.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -395,6 +401,17 @@
 		320F0A7881D84C2E8E6078DF /* libRNCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCamera.a; sourceTree = "<group>"; };
 		4EC6E8BE4C164E4BB24BFE64 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		522BC2DB21AAA4B800048AAA /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../../FirstRNProject/node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
+		523BA48B21BAA94500C61DCE /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bundle; path = ../bundle; sourceTree = "<group>"; };
+		52E1393D21AFB07200B5A59B /* RNIOSLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNIOSLog.h; sourceTree = "<group>"; };
+		52E1393E21AFB07200B5A59B /* RNIOSLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNIOSLog.m; sourceTree = "<group>"; };
+		52E1397A21AFCA6500B5A59B /* OCRN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCRN.h; sourceTree = "<group>"; };
+		52E1397B21AFCA6500B5A59B /* OCRN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCRN.m; sourceTree = "<group>"; };
+		52E139A721AFCB7700B5A59B /* RNOC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNOC.h; sourceTree = "<group>"; };
+		52E139A821AFCB7700B5A59B /* RNOC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNOC.m; sourceTree = "<group>"; };
+		52E139AA21AFCEDA00B5A59B /* RNIOSAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNIOSAlert.h; sourceTree = "<group>"; };
+		52E139AB21AFCEDA00B5A59B /* RNIOSAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNIOSAlert.m; sourceTree = "<group>"; };
+		52E139AD21AFEA5E00B5A59B /* NextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NextViewController.h; sourceTree = "<group>"; };
+		52E139AE21AFEA5E00B5A59B /* NextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextViewController.m; sourceTree = "<group>"; };
 		58962424CC4F4628917608A8 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		5E1E26329ED040BD8BF2FA6F /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -556,9 +573,20 @@
 		13B07FAE1A68108700A75B9A /* BabyShow */ = {
 			isa = PBXGroup;
 			children = (
+				523BA48B21BAA94500C61DCE /* bundle */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				52E139AD21AFEA5E00B5A59B /* NextViewController.h */,
+				52E139AE21AFEA5E00B5A59B /* NextViewController.m */,
+				52E1397A21AFCA6500B5A59B /* OCRN.h */,
+				52E1397B21AFCA6500B5A59B /* OCRN.m */,
+				52E1393D21AFB07200B5A59B /* RNIOSLog.h */,
+				52E1393E21AFB07200B5A59B /* RNIOSLog.m */,
+				52E139A721AFCB7700B5A59B /* RNOC.h */,
+				52E139A821AFCB7700B5A59B /* RNOC.m */,
+				52E139AA21AFCEDA00B5A59B /* RNIOSAlert.h */,
+				52E139AB21AFCEDA00B5A59B /* RNIOSAlert.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -1253,6 +1281,7 @@
 				7167E58E49524BAF99D3D9EE /* FontAwesome.ttf in Resources */,
 				A83C6D670A2D4E8EA33431E2 /* Foundation.ttf in Resources */,
 				13A96E78537A49B89F17FB59 /* Ionicons.ttf in Resources */,
+				523BA48C21BAA94600C61DCE /* bundle in Resources */,
 				96DFE9D5DD9C44A5B355289E /* MaterialCommunityIcons.ttf in Resources */,
 				143ED6D83AAE49B091C4D779 /* MaterialIcons.ttf in Resources */,
 				F8D9875899474F99B6077F21 /* Octicons.ttf in Resources */,
@@ -1322,8 +1351,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E139A921AFCB7700B5A59B /* RNOC.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				52E1393F21AFB07200B5A59B /* RNIOSLog.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				52E139AF21AFEA5E00B5A59B /* NextViewController.m in Sources */,
+				52E139AC21AFCEDA00B5A59B /* RNIOSAlert.m in Sources */,
+				52E1397C21AFCA6500B5A59B /* OCRN.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

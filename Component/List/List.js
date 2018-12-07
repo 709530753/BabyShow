@@ -22,6 +22,10 @@ import {
  import Item from './Item';
 
 import Detail from './Detail';
+import OCRN from './../RN-OC/OCRN'
+import RNOC from './../RN-OC/RNOC'
+import RNAlert from './../RN-OC/RNAlert'
+import URL from './../common/url'
 
 
 var {height, width} = Dimensions.get('window');
@@ -32,6 +36,8 @@ export default class List extends Component {
 
     constructor(props){
         super(props)
+        console.log("constructor");
+
 
         this.state={
             dataSource:new ListView.DataSource({
@@ -41,16 +47,41 @@ export default class List extends Component {
 
     }
 
+    // 在子组件中对父元素props或state的改变进行监听进行相应的操作
+    componentWillReceiveProps(nextProps){
+        console.log(this.props.detailContent,'this--->>componentWillReceiveProps');
+        console.log(nextProps.detailContent,'next--->>componentWillReceiveProps')
+
+    }
+
+    componentWillMount() {
+        console.log("componentWillMount1111");
+    }
+
+    componentWillUpdate(){
+        console.log("componentWillUpdate1111---组件将要更新");
+
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount1111");
+    }
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount1111");
+    }
+
+
     componentDidMount(){
 
-        console.log("name :" + this.props.hiddenTab);
+        console.log("tabbar :" + this.props.isHideTabbar);
 
        this._loadData()
     }
 
     _loadData(){
 
-        fetch('http://localhost:9528/json/babyshow/video.json')
+        fetch(URL.list)
             .then((response) => response.json())
             .then((responseJson) => {
                 console.log(responseJson);
@@ -78,9 +109,6 @@ export default class List extends Component {
                             <Text style={styles.navTitle}>视频列表</Text>
                         </View>
 
-                        <ActivityIndicator
-                            style={styles.indicatorStyle}
-                        />
                         <ListView
                             dataSource={this.state.dataSource}
                             renderRow={this._renderRow}
@@ -108,15 +136,20 @@ export default class List extends Component {
         );
     }
 
+    _isHideTabbar(isHide) {
+        this.props.isHideTabbar(isHide);
+    }
+
     _loadPage(rowData) {
         let {navigator} = this.props;
 
         if (navigator) {
-            this.props.hiddenTabbar(true)
+            this._isHideTabbar(true)
             navigator.push({
                 component:Detail,
                 params:{
-                    rowData:rowData
+                    rowData:rowData,
+                    isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
                 }
             })
         }

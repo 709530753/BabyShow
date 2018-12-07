@@ -4,27 +4,27 @@
   "data":[
     {
       "id":1,
-      "icon":"http://localhost:9528/resources/babyshow/say.png",
+      "icon":"http://192.168.1.11:9528/resources/babyshow/say.png",
       "title":"说说"
     },  {
       "id":2,
-      "icon":"http://localhost:9528/resources/babyshow/photoalbum.png",
+      "icon":"http://192.168.1.11:9528/resources/babyshow/photoalbum.png",
       "title":"相册"
     },  {
       "id":3,
-      "icon":"http://localhost:9528/resources/babyshow/shoot.png",
+      "icon":"http://192.168.1.11:9528/resources/babyshow/shoot.png",
       "title":"拍摄"
     },  {
       "id":4,
-      "icon":"http://localhost:9528/resources/babyshow/signin.png",
+      "icon":"http://192.168.1.11:9528/resources/babyshow/signin.png",
       "title":"签到"
     },  {
       "id":5,
-      "icon":"http://localhost:9528/resources/babyshow/redpackage.png",
+      "icon":"http://192.168.1.11:9528/resources/babyshow/redpackage.png",
       "title":"小红包"
     },  {
       "id":6,
-      "icon":"http://localhost:9528/resources/babyshow/seeding.png",
+      "icon":"http://192.168.1.11:9528/resources/babyshow/seeding.png",
       "title":"直播"
     }
   ]

@@ -118,6 +118,7 @@ export default class Picture extends Component {
 
 
         let pictureHeader = this.refs.PictureHeader;
+        console.log("pictureHeader " + pictureHeader);
 
         pictureHeader._setState(pageIndex);
 

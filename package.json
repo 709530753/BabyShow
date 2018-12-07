@@ -26,5 +26,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "scripts":{
+    "bundle-ios":"node node_modules/react-native/local-cli/cli.js bundle --entry-file index.js  --platform ios --dev false --bundle-output ./bundle/index.ios.jsbundle --assets-dest ./bundle"
   }
 }

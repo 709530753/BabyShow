@@ -91,6 +91,7 @@ export default class Detail extends Component {
         console.log("aaaaaaaaaaaaaaaaa");
         let navigatior = this.props.navigator;
         if (navigatior) {
+            this.props.isHideTabbar(false)
             navigatior.pop();
         }
 

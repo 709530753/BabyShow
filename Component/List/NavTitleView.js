@@ -10,7 +10,8 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 
 var {height, width} = Dimensions.get('window');
@@ -22,25 +23,49 @@ export default class NavTitleView extends Component {
         super(props);
         this.state={
             navTitle:this.props.navTitle,
-            backTitle:this.props.backTitle
+            backTitle:this.props.backTitle,
+            rightBarBtnItemDisplay:true,
+            rightBarBtnItemTitle:this.props.rightBarBtnItemTitle,
+            rightBarBtnItemIcon:this.props.rightBarBtnItemIcon
+
         }
     }
 
     render(){
         let navTitle = this.props.navTitle;
         let backTitle = this.props.backTitle;
+        let rightBarBtnItemDisplay = this.props.rightBarBtnItemDisplay;
+        let rightBarBtnItemTitle = this.props.rightBarBtnItemTitle;
+        let rightBarBtnItemIcon = this.props.rightBarBtnItemIcon;
 
         return(
             <View style={styles.navStyle}>
                 <TouchableOpacity onPress={this.props.back}>
-                    <Text style={styles.backStyle}>
-                        {backTitle}
-                    </Text>
+                    <View style={styles.backViewStyle}>
+                        <Image style={styles.backIconStyle}
+                               source={require('./../resources/nav_back.png')}
+                        />
+                        <Text style={styles.backStyle}>
+                            {backTitle}
+                        </Text>
+                    </View>
+
                 </TouchableOpacity>
 
                 <Text style={styles.navTitle}>
                     {navTitle}
                 </Text>
+                <TouchableOpacity onPress={this.props.rightBarBtnItemClick}>
+                    <View style={ [styles.rightBarBtnItem, {display:rightBarBtnItemDisplay}]}>
+                        <Image style={styles.backIconStyle}
+                               source={require('../resources/camera.png')}
+                        />
+                        <Text style={styles.backStyle}>
+                            {rightBarBtnItemTitle}
+                        </Text>
+                    </View>
+
+                </TouchableOpacity>
             </View>
         )
     }
@@ -58,15 +83,33 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     navTitle:{
-    fontSize:18,
+        fontSize:18,
         marginBottom:-15,
         textAlign:"center",
-        width:width - 80,
+        width:width - 160,
+    },
+    backViewStyle:{
+        marginLeft:-50,
+        flexDirection:'row',
+        width:80,
     },
     backStyle:{
+        marginTop:10,
         fontSize:16,
         textAlign:"left",
         top:5,
 
+    },
+    backIconStyle:{
+        marginLeft:-10,
+        marginTop:15,
+        width:20,
+        height:20,
+
+    },
+    rightBarBtnItem:{
+        marginRight:-180,
+        flexDirection:'row',
+        width:80,
     }
 });

@@ -68,13 +68,21 @@ export default class Edit extends Component {
         )
     }
 
+    _isHideTabbar(isHide) {
+        this.props.isHideTabbar(isHide);
+    }
     _onClickEditItem = (rowData) => {
         console.log("rowData : " + rowData.title);
 
         let {navigator} = this.props;
         if (navigator) {
+            this.props.isHideTabbar(true)
             navigator.push({
-                component:Transcribe
+                component:Transcribe,
+                params:{
+                    rowData:rowData,
+                    isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
+                }
             })
         }
     }

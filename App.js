@@ -11,6 +11,8 @@ import {
     StyleSheet,
     Text,
     View,
+    NativeModules,
+    DeviceEventEmitter
 } from 'react-native';
 
 import {
@@ -26,6 +28,8 @@ import Account from './Component/Account/Account'
 
 import ScrollabelTabView ,{DefaultTabBar,ScrollableTabBar} from 'react-native-scrollable-tab-view'
 
+var notification = NativeModules.notification;
+
 export default class App extends Component<Props> {
 
     constructor(props){
@@ -33,26 +37,55 @@ export default class App extends Component<Props> {
         this.state={
             tabNames:['视频','录制','图片','账户'],
             tabIconNames:['ios-videocam-outline','ios-recording',
-                'ios-reverse-camera','ios-contact']
+                'ios-reverse-camera','ios-contact'],
+            hiddenTab:false
         }
     }
 
-    hiddenTabbar = (hidden)=> {
+
+    componentDidMount() {
+        console.log("componentDidMount App");
+
+    }
+
+    componentWillMount(){
+        console.log("componentWillMount App");
+
+    }
+
+    componentDidUpdate(){
+        console.log("componentDidUpdate1111---组件更新完毕");
+    }
+
+    componentWillUnmount(){
+        console.log("componentWillUnmount App");
+
+    };
+
+    _isHideTabbar = (isHide)=> {
+
+        console.log("_isHideTabbar :" + isHide);
         this.setState({
-            hiddenTab:hidden
+            hiddenTab:isHide
         })
-}
+
+    }
 
     render() {
         let tabNames = this.state.tabNames;
         let tabIconNames = this.state.tabIconNames;
+        let hiddenTab = this.state.hiddenTab;
+        console.log("hiddenTab :" + hiddenTab);
+
         return (
             <ScrollabelTabView
-                renderTabBar={() => <XCTabbar ref="tabbar"
+                renderTabBar={() => <XCTabbar
+                    visibility={false}
+                    hiddenTab={this.state.hiddenTab == true ? true:false}
                     tabNames={tabNames} tabIconNames={tabIconNames}/>}
-                tabBarPosition="bottom"
-                scrollWithoutAnimation={true}
-                locked={true}
+                    tabBarPosition={"bottom"}
+                    scrollWithoutAnimation={true}
+                    locked={true}
                 >
               <Navigator
                   tabLabel="list"
@@ -60,8 +93,9 @@ export default class App extends Component<Props> {
                       name:'list',
                       component:List,
                       params:{
-                          title:'视频列表'
-                  }
+                          title:'视频列表',
+                          isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
+                      }
                   }}
                   renderScene={(route,navigator) =>
                       <route.component {...route.params} navigator={navigator}/>}
@@ -76,8 +110,9 @@ export default class App extends Component<Props> {
                       name:'edit',
                       component:Edit,
                       params:{
-                          title:'编辑'
-                  }
+                          title:'编辑',
+                          isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
+                      }
                   }}
                   renderScene={(route,navigator) =>
                       <route.component {...route.params} navigator={navigator} />}

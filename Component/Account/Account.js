@@ -56,11 +56,11 @@ export default class Account extends Component {
 
         let url = URL.mine;
 
-        console.log("URL :" + url);
+        console.log("URL-------ssssss :" + url);
 
         fetch(url).then((response) => response.json())
             .then((responseJson) => {
-            console.log(responseJson);
+            console.log("responseJson" + JSON.stringify(responseJson));
 
             this.setState({
                 dataSource:this.state.dataSource.cloneWithRows(
