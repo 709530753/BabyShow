@@ -42,7 +42,7 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		4FB5285903884BF5BFFB090F /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D10D9E1AA9F4400BF006AA7 /* libRCTVideo.a */; };
 		522BC30B21AAA4CE00048AAA /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522BC2E521AAA4B800048AAA /* libRCTCameraRoll.a */; };
-		523BA48C21BAA94600C61DCE /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = 523BA48B21BAA94500C61DCE /* bundle */; };
+		523BA48E21BAAFA800C61DCE /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = 523BA48D21BAAFA800C61DCE /* bundle */; };
 		52D68497214E5BB00067AAF3 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D68494214E5B770067AAF3 /* libRCTVideo.a */; };
 		52E1393F21AFB07200B5A59B /* RNIOSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E1393E21AFB07200B5A59B /* RNIOSLog.m */; };
 		52E1397C21AFCA6500B5A59B /* OCRN.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E1397B21AFCA6500B5A59B /* OCRN.m */; };
@@ -401,7 +401,7 @@
 		320F0A7881D84C2E8E6078DF /* libRNCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCamera.a; sourceTree = "<group>"; };
 		4EC6E8BE4C164E4BB24BFE64 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		522BC2DB21AAA4B800048AAA /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../../FirstRNProject/node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
-		523BA48B21BAA94500C61DCE /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bundle; path = ../bundle; sourceTree = "<group>"; };
+		523BA48D21BAAFA800C61DCE /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bundle; path = ../bundle; sourceTree = "<group>"; };
 		52E1393D21AFB07200B5A59B /* RNIOSLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNIOSLog.h; sourceTree = "<group>"; };
 		52E1393E21AFB07200B5A59B /* RNIOSLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNIOSLog.m; sourceTree = "<group>"; };
 		52E1397A21AFCA6500B5A59B /* OCRN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCRN.h; sourceTree = "<group>"; };
@@ -573,7 +573,7 @@
 		13B07FAE1A68108700A75B9A /* BabyShow */ = {
 			isa = PBXGroup;
 			children = (
-				523BA48B21BAA94500C61DCE /* bundle */,
+				523BA48D21BAAFA800C61DCE /* bundle */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1281,7 +1281,7 @@
 				7167E58E49524BAF99D3D9EE /* FontAwesome.ttf in Resources */,
 				A83C6D670A2D4E8EA33431E2 /* Foundation.ttf in Resources */,
 				13A96E78537A49B89F17FB59 /* Ionicons.ttf in Resources */,
-				523BA48C21BAA94600C61DCE /* bundle in Resources */,
+				523BA48E21BAAFA800C61DCE /* bundle in Resources */,
 				96DFE9D5DD9C44A5B355289E /* MaterialCommunityIcons.ttf in Resources */,
 				143ED6D83AAE49B091C4D779 /* MaterialIcons.ttf in Resources */,
 				F8D9875899474F99B6077F21 /* Octicons.ttf in Resources */,
