@@ -11,7 +11,8 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Image
+    Image,
+    AlertIOS,
 } from 'react-native';
 
 var {height, width} = Dimensions.get('window');
@@ -22,8 +23,6 @@ export default class NavTitleView extends Component {
     constructor(props){
         super(props);
         this.state={
-            navTitle:this.props.navTitle,
-            backTitle:this.props.backTitle,
             rightBarBtnItemDisplay:true,
             rightBarBtnItemTitle:this.props.rightBarBtnItemTitle,
             rightBarBtnItemIcon:this.props.rightBarBtnItemIcon
@@ -37,11 +36,23 @@ export default class NavTitleView extends Component {
         let rightBarBtnItemDisplay = this.props.rightBarBtnItemDisplay;
         let rightBarBtnItemTitle = this.props.rightBarBtnItemTitle;
         let rightBarBtnItemIcon = this.props.rightBarBtnItemIcon;
+        let colorIndex = this.props.colorIndex;
+
+        let backgroundColor = ''
+
+        // AlertIOS.alert(colorIndex);
+
+        if (colorIndex == 0 || colorIndex == null) {
+            backgroundColor: '#dddddd';
+        } else if (colorIndex == 1) {
+            backgroundColor: null;
+        }
 
         return(
             <View style={styles.navStyle}>
-                <TouchableOpacity onPress={this.props.back}>
-                    <View style={styles.backViewStyle}>
+                <TouchableOpacity onPress={this.props.back} activeOpacity={1.0}>
+
+                    <View style={[styles.backViewStyle, backgroundColor=backgroundColor]}>
                         <Image style={styles.backIconStyle}
                                source={require('./../resources/nav_back.png')}
                         />
@@ -57,9 +68,9 @@ export default class NavTitleView extends Component {
                 </Text>
                 <TouchableOpacity onPress={this.props.rightBarBtnItemClick}>
                     <View style={ [styles.rightBarBtnItem, {display:rightBarBtnItemDisplay}]}>
-                        <Image style={styles.backIconStyle}
-                               source={require('../resources/camera.png')}
-                        />
+                        {/*<Image style={styles.backIconStyle}*/}
+                               {/*source={require('../resources/camera.png')}*/}
+                        {/*/>*/}
                         <Text style={styles.backStyle}>
                             {rightBarBtnItemTitle}
                         </Text>
@@ -77,7 +88,7 @@ const styles = StyleSheet.create({
         marginTop:0,
         flexDirection:'row',
         alignItems:'center',
-        backgroundColor:'#dddddd',
+        // backgroundColor:'#dddddd',
         height:64,
         width:width,
         justifyContent:'center'

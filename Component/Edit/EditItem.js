@@ -3,6 +3,8 @@ import React,{ Component } from 'react';
 
 import { Dimensions } from 'react-native';
 
+import URL from './../common/url'
+
 import {
 
     StyleSheet,
@@ -32,7 +34,7 @@ export default class EditItem extends Component {
         <TouchableOpacity onPress={()=>this.props.onClickEditItem(rowData)}>
             <View style={styles.itemStyle}>
                 <Image style={styles.iconStyle}
-                       source={{url:rowData.icon}}
+                       source={{url: URL.endpoint + rowData.icon}}
                 />
                 <Text style={styles.titleStyle}>{rowData.title}</Text>
             </View>

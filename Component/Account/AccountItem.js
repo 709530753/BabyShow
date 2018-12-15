@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 
 import {Dimensions} from 'react-native';
 
+import URL from './../common/url'
+
 import {
     StyleSheet,
     Text,
@@ -32,7 +34,7 @@ export default class AccountItem extends Component {
         <TouchableOpacity onPress={this.props.onSelected}>
             <View style={styles.container}>
                 <View style={styles.contentView}>
-                    <Image source={{uri:rowData.url}} style={styles.iconStyle}/>
+                    <Image source={{uri: URL.endpoint + rowData.url}} style={styles.iconStyle}/>
                     <Text style={styles.titleStyle}>
                         {rowData.title}
                     </Text>

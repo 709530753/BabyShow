@@ -15,8 +15,16 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    AlertIOS
+    AlertIOS,
+    Image,
+    ImageBackground
 } from 'react-native';
+
+import LoginHeader from './LoginHeader'
+import LoginContent from './LoginContent'
+import FastLoginView from './FastLoginView'
+
+import Regist from './Regist/Regist'
 
 var {height, width} = Dimensions.get('window');
 
@@ -34,59 +42,87 @@ export default class Login extends Component {
 
     render(){
         return(
-            <View style={styles.container}>
-                <NavTitleView
-                    navTitle={"登录"}
-                    backTitle={"返回"}
-                    back={()=>this._back()}
-                />
-
-                <View style={styles.usernameViewStyle}>
-                    <Text style={styles.usernameTextStyle}>
-                        用户名:
-                    </Text>
-                    <TextInput style={styles.usernameStyle}
-                    placeholder={"请输入用户名"}
-                               autoCapitalize={'none'}
-                               autoCorrect={false}
-                               keyboardType={'phone-pad'}
-                               underlineColorAndroid="transparent"
-                               onChangeText={(text)=>
-                               this.setState({
-                               username:text
-                               })}
+                <ImageBackground style={styles.container}
+                       source={require('./../resources/login/login_bg.jpeg')}>
+                    {/* loginHeader */}
+                    <LoginHeader
                     />
-
-                </View>
-
-                <View style={styles.passwordViewStyle}>
-                    <Text style={styles.passwordTextStyle}>
-                        密码:
-                    </Text>
-                    <TextInput style={styles.passwordStyle}
-                               placeholder={"请输入密码"}
-                               autoCapitalize={'none'}
-                               autoCorrect={false}
-                               keyboardType={'phone-pad'}
-                               underlineColorAndroid="transparent"
-
-                               onChangeText={(text)=>
-
-                               this.setState({
-                                   password:text
-                               })}
+                    <LoginContent
+                        registActon={()=>this._registActon()}
                     />
-                </View>
+                    <FastLoginView/>
 
-                <TouchableOpacity onPress={()=>this._login()}>
-                    <Text style={styles.loginBtnStyle}>
-                        登录
-                    </Text>
-                </TouchableOpacity>
 
-            </View>
+                </ImageBackground>
         )
     }
+
+    _registActon =()=> {
+        let {navigator} = this.props;
+        console.log("navigator : " + navigator);
+
+        if (navigator) {
+            navigator.push({
+                component:Regist
+            })
+        }
+    }
+
+
+/*
+<View style={styles.container}>
+<NavTitleView
+navTitle={"登录"}
+backTitle={"返回"}
+back={()=>this._back()}
+rightBarBtnItemIcon={""}
+/>
+
+<View style={styles.usernameViewStyle}>
+<Text style={styles.usernameTextStyle}>
+用户名:
+</Text>
+<TextInput style={styles.usernameStyle}
+placeholder={"请输入用户名"}
+autoCapitalize={'none'}
+autoCorrect={false}
+keyboardType={'phone-pad'}
+underlineColorAndroid="transparent"
+onChangeText={(text)=>
+    this.setState({
+        username:text
+    })}
+/>
+
+</View>
+
+<View style={styles.passwordViewStyle}>
+<Text style={styles.passwordTextStyle}>
+密码:
+</Text>
+<TextInput style={styles.passwordStyle}
+placeholder={"请输入密码"}
+autoCapitalize={'none'}
+autoCorrect={false}
+keyboardType={'phone-pad'}
+underlineColorAndroid="transparent"
+
+onChangeText={(text)=>
+
+    this.setState({
+        password:text
+    })}
+/>
+</View>
+
+<TouchableOpacity onPress={()=>this._login()}>
+<Text style={styles.loginBtnStyle}>
+登录
+</Text>
+</TouchableOpacity>
+
+</View>
+    */
 
     _login(){
 
@@ -204,5 +240,9 @@ const styles = StyleSheet.create({
         color:'#fff',
         borderWidth:1,
         borderRadius:5,
+    },
+    loginheder: {
+        height: 300,
+        width:width,
     }
 });
