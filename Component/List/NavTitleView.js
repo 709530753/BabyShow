@@ -32,38 +32,31 @@ export default class NavTitleView extends Component {
 
     render(){
         let navTitle = this.props.navTitle;
+        let navTitleColor = this.props.navTitleColor;
+        let backTitleColor = this.props.backTitleColor;
         let backTitle = this.props.backTitle;
+        let backgroundColor = this.props.backgroundColor;
+        let iconType = this.props.iconType;
+
         let rightBarBtnItemDisplay = this.props.rightBarBtnItemDisplay;
         let rightBarBtnItemTitle = this.props.rightBarBtnItemTitle;
         let rightBarBtnItemIcon = this.props.rightBarBtnItemIcon;
-        let colorIndex = this.props.colorIndex;
 
-        let backgroundColor = ''
-
-        // AlertIOS.alert(colorIndex);
-
-        if (colorIndex == 0 || colorIndex == null) {
-            backgroundColor: '#dddddd';
-        } else if (colorIndex == 1) {
-            backgroundColor: null;
-        }
 
         return(
             <View style={styles.navStyle}>
                 <TouchableOpacity onPress={this.props.back} activeOpacity={1.0}>
 
                     <View style={[styles.backViewStyle, backgroundColor=backgroundColor]}>
-                        <Image style={styles.backIconStyle}
-                               source={require('./../resources/nav_back.png')}
-                        />
-                        <Text style={styles.backStyle}>
+                        {this._renderBackIcon(iconType)}
+                        <Text style={[styles.backStyle, {color: backTitleColor}]}>
                             {backTitle}
                         </Text>
                     </View>
 
                 </TouchableOpacity>
 
-                <Text style={styles.navTitle}>
+                <Text style={[styles.navTitle,  {color: navTitleColor}]}>
                     {navTitle}
                 </Text>
                 <TouchableOpacity onPress={this.props.rightBarBtnItemClick}>
@@ -79,6 +72,24 @@ export default class NavTitleView extends Component {
                 </TouchableOpacity>
             </View>
         )
+    }
+
+    _renderBackIcon =(iconType)=> {
+
+        if (iconType == undefined || iconType == null || iconType == 0) {
+            return(
+                <Image style={styles.backIconStyle}
+                       source={require('./../resources/nav_back.png')}
+                />
+            )
+        } else if (iconType == 1) {
+            return(
+                <Image style={styles.backIconStyle}
+                       source={require('./../resources/back_white.png')}
+                />
+            )
+        }
+
     }
 
 }

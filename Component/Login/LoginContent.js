@@ -44,7 +44,7 @@ export default class LoginContent extends Component {
                 </View>
                 <LoginTextInputView/>
 
-                <TouchableOpacity onPress={()=>this._forgetPassword()} activeOpacity={1.0}>
+                <TouchableOpacity onPress={()=>this.props.forgetPassword()} activeOpacity={1.0}>
                     <Text style={ styles.forgetPasswordStyle}>忘记密码?</Text>
                 </TouchableOpacity>
 
@@ -87,13 +87,6 @@ export default class LoginContent extends Component {
                  <Image style={ [styles.autoLoginIconStyle]} source={require('./../resources/login/check_box_selected.png')}/>
              )
         }
-
-    }
-
-
-    _forgetPassword = ()=> {
-
-        AlertIOS.alert("忘记密码");
 
     }
 

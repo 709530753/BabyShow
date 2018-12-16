@@ -25,6 +25,7 @@ import LoginContent from './LoginContent'
 import FastLoginView from './FastLoginView'
 
 import Regist from './Regist/Regist'
+import FindPassword from './FindPassword/FindPassword'
 
 var {height, width} = Dimensions.get('window');
 
@@ -49,12 +50,31 @@ export default class Login extends Component {
                     />
                     <LoginContent
                         registActon={()=>this._registActon()}
+                        forgetPassword={()=>this._forgetPassword()}
                     />
                     <FastLoginView/>
 
 
                 </ImageBackground>
         )
+    }
+
+    _forgetPassword =()=> {
+
+        // AlertIOS.alert("忘记密码");
+
+        let {navigator} = this.props;
+        console.log("navigator : " + navigator);
+
+        if (navigator) {
+            navigator.push({
+                component: FindPassword,
+                params:{
+
+                }
+            })
+        }
+
     }
 
     _registActon =()=> {

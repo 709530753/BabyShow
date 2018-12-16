@@ -13,6 +13,7 @@ import {
 
 import Login from './../Login/Login'
 import Regist from './../Login/Regist/Regist'
+import FindPassword from '../Login/FindPassword/FindPassword'
 
 export default class Main extends Component {
 
@@ -22,7 +23,7 @@ export default class Main extends Component {
                 tabLabel="Login"
                 initialRoute={{
                     name:'Login',
-                    component:Regist,
+                    component:Login,
                     params:{
                         title:'登录'
                     }
