@@ -18,8 +18,11 @@ import {
     ActivityIndicator,
 } from 'react-native';
 
+import {
+    Navigator,
+}from 'react-native-deprecated-custom-components';
 
- import Item from './Item';
+import Item from './Item';
 
 import Detail from './Detail';
 import OCRN from './../RN-OC/OCRN'
@@ -27,6 +30,7 @@ import RNOC from './../RN-OC/RNOC'
 import RNAlert from './../RN-OC/RNAlert'
 import URL from './../common/url'
 
+import Login from './../Login/Login'
 
 var {height, width} = Dimensions.get('window');
 
@@ -38,12 +42,24 @@ export default class List extends Component {
         super(props)
         console.log("constructor");
 
-
         this.state={
             dataSource:new ListView.DataSource({
                 rowHasChanged:(r1,r2)=>r1!==r2,
             }),
+            isLogin: false
         };
+
+        let isLogin = this.state.isLogin;
+        if (isLogin == false) {
+            let {navigator} = this.props;
+
+            if (navigator) {
+                this._isHideTabbar(true)
+                navigator.push({
+                    component: Login
+                })
+            }
+        }
 
     }
 
@@ -65,6 +81,8 @@ export default class List extends Component {
 
     componentDidMount() {
         console.log("componentDidMount1111");
+
+
     }
 
     componentWillUnmount() {
@@ -105,6 +123,7 @@ export default class List extends Component {
         return(
 
                     <View style={styles.container}>
+                        {/*{this._renderLoginView()}*/}
                         <View style={styles.navStyle} >
                             <Text style={styles.navTitle}>视频列表</Text>
                         </View>
@@ -116,6 +135,30 @@ export default class List extends Component {
 
                     </View>
         )
+    }
+
+    _renderLoginView =()=> {
+        let isLogin = this.state.isLogin;
+        // AlertIOS.alert("" + isLogin);
+        if (isLogin == false) {
+            return(
+                <Navigator
+                    tabLabel="Login"
+                    initialRoute={{
+                        name:'Login',
+                        component:Login,
+                        params:{
+                            title:'登录'
+                        }
+                    }}
+                    renderScene={(route,navigator) =>
+                        <route.component {...route.params} navigator={navigator}/>}
+
+                />
+            )
+        } else {
+
+        }
     }
 
     _renderIndicator = ()=> {

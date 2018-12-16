@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react'
 
+import ShareUtil from './../UMModules/js/ShareUtil'
+
 import {
     StyleSheet,
     View,
@@ -15,6 +17,14 @@ import {
 let {height, width } = Dimensions.get('window');
 
 export default class FastLoginView extends Component {
+
+     componentDidMount() {
+         ShareUtil.auth(0,(code,result,message) =>{
+             console.log("code : " + code + " message : " + message );
+
+         });
+
+     }
 
     render(){
         return(
@@ -45,15 +55,33 @@ export default class FastLoginView extends Component {
 
     _fastLoginAction =(loginType)=> {
 
+
+        // ShareUtil.shareboard('sssss','http://dev.umeng.com/images/tab2_1.png','http://www.umeng.com/','title',[0,1,2,3,4,5,6,7,8,9],(code,message) =>{
+        //     console.log("code : " + code + " message : " + message );
+        // });
+
         switch(loginType) {
             case 1:
-                AlertIOS.alert("QQ登录");
+
+                ShareUtil.share('sssss','http://dev.umeng.com/images/tab2_1.png','http://www.umeng.com/','title',0,(code,message) =>{
+                    // this.setState({result:message});
+                    console.log("code : " + code + " message : " + message );
+                });
+                // AlertIOS.alert("QQ登录");
                 break;
             case 2:
-                AlertIOS.alert("wechat登录");
+                ShareUtil.share('sssss','http://dev.umeng.com/images/tab2_1.png','http://www.umeng.com/','title',2,(code,message) =>{
+                    console.log("code : " + code + " message : " + message );
+
+                });
+                // AlertIOS.alert("wechat登录");
                 break;
             case 3:
-                AlertIOS.alert("weibo登录");
+                ShareUtil.share('sssss','http://dev.umeng.com/images/tab2_1.png','http://www.umeng.com/','title',1,(code,message) =>{
+                    console.log("code : " + code + " message : " + message );
+                });
+
+                // AlertIOS.alert("weibo登录");
                 break;
             default: return null;
         }

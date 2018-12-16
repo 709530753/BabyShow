@@ -48,7 +48,7 @@ export default class LoginContent extends Component {
                     <Text style={ styles.forgetPasswordStyle}>忘记密码?</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={()=>this._loginAction()} activeOpacity={1.0}>
+                <TouchableOpacity onPress={()=>this.props.loginAction()} activeOpacity={1.0}>
                     <View style={ styles.loginViewStyles}>
                         <Text style={ styles.loginStyle}>登录</Text>
                     </View>
@@ -87,11 +87,6 @@ export default class LoginContent extends Component {
                  <Image style={ [styles.autoLoginIconStyle]} source={require('./../resources/login/check_box_selected.png')}/>
              )
         }
-
-    }
-
-    _loginAction = ()=> {
-        AlertIOS.alert("登录");
 
     }
 

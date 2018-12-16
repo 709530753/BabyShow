@@ -1,0 +1,8 @@
+{
+  "message": "ok",
+  "stausCode": 200,
+  "data":{
+    "token": "123456",
+    "username": "myxc"
+  }
+}

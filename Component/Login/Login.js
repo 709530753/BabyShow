@@ -17,7 +17,8 @@ import {
     TouchableOpacity,
     AlertIOS,
     Image,
-    ImageBackground
+    ImageBackground,
+    Modal
 } from 'react-native';
 
 import LoginHeader from './LoginHeader'
@@ -26,6 +27,10 @@ import FastLoginView from './FastLoginView'
 
 import Regist from './Regist/Regist'
 import FindPassword from './FindPassword/FindPassword'
+
+import TabBar from './../../App'
+
+import loginResponse from './json/login.json'
 
 var {height, width} = Dimensions.get('window');
 
@@ -37,26 +42,59 @@ export default class Login extends Component {
         this.state={
             username:this.props.username,
             password:this.props.password,
+            visible: true
         }
 
     }
 
     render(){
         return(
-                <ImageBackground style={styles.container}
-                       source={require('./../resources/login/login_bg.jpeg')}>
-                    {/* loginHeader */}
-                    <LoginHeader
-                    />
-                    <LoginContent
-                        registActon={()=>this._registActon()}
-                        forgetPassword={()=>this._forgetPassword()}
-                    />
-                    <FastLoginView/>
-
-
-                </ImageBackground>
+        <Modal visible={this.state.visible}
+               animationType={'slide'}
+               transparent={false}
+        >
+            <ImageBackground style={styles.container}
+                             source={require('./../resources/login/login_bg.jpeg')}>
+                {/* loginHeader */}
+                <LoginHeader
+                />
+                <LoginContent
+                    registActon={()=>this._registActon()}
+                    forgetPassword={()=>this._forgetPassword()}
+                    loginAction={()=>this._loginAction()}
+                />
+                <FastLoginView/>
+            </ImageBackground>
+        </Modal>
         )
+    }
+
+    _loginAction = ()=> {
+        AlertIOS.alert("登录");
+
+        console.log("loginResponse : " + loginResponse);
+
+        this.props.dismiss;
+        // this.setState({
+        //     visible: false
+        // })
+
+        // if (loginResponse.stausCode == 200) {
+        //     // AlertIOS.alert("登录成功");
+        //     let {navigator} = this.props;
+        //     console.log("navigator : " + navigator);
+        //
+        //     if (navigator) {
+        //         navigator.push({
+        //             component: TabBar,
+        //             params:{
+        //
+        //             }
+        //         })
+        //     }
+        //
+        // }
+
     }
 
     _forgetPassword =()=> {
