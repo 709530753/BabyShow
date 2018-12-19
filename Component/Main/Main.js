@@ -14,8 +14,6 @@ import {
 }from 'react-native-deprecated-custom-components';
 
 import Login from './../Login/Login'
-import Regist from './../Login/Regist/Regist'
-import FindPassword from '../Login/FindPassword/FindPassword'
 import TabBar  from './../../App'
 
 export default class Main extends Component {
@@ -23,45 +21,60 @@ export default class Main extends Component {
     constructor(props){
         super(props);
         this.state=({
-            isLogin: true
+            isLogin: false
         })
     }
 
     componentDidMount() {
-
-        this.setState({
-            isLogin: false
-        })
 
     }
 
     render(){
 
         return(
-            <TabBar/>
+            <View style={styles.container}>
+                {this._renderView()}
+            </View>
         )
     }
 
     _renderView =()=> {
         let isLogin = this.state.isLogin;
-        AlertIOS.alert("" + isLogin);
-        if (isLogin == false) {
+        // AlertIOS.alert("" + isLogin);
+        if (isLogin) {
+            return(
+                <TabBar style={{flex:1}}/>
+            )
+        } else {
             return(
                 <Navigator
-                    tabLabel="Login"
                     initialRoute={{
-                        name:'Login',
-                        component:Login,
+                        component: Login,
                         params:{
-                            title:'登录'
+                            name:"登录",
+                            title:"登录",
+                            login: (isLogin)=>this.setState({
+                                isLogin: isLogin
+                            })
                         }
                     }}
                     renderScene={(route,navigator) =>
-                        <route.component {...route.params} navigator={navigator}/>}
+                        <route.component {...route.params} navigator={navigator} />}
+
+                    configureScene={() =>
+                        Navigator.SceneConfigs.FloatFromBottom
+                    }
 
                 />
+
             )
         }
     }
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    }
+})

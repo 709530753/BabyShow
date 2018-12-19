@@ -49,10 +49,6 @@ export default class Login extends Component {
 
     render(){
         return(
-        <Modal visible={this.state.visible}
-               animationType={'slide'}
-               transparent={false}
-        >
             <ImageBackground style={styles.container}
                              source={require('./../resources/login/login_bg.jpeg')}>
                 {/* loginHeader */}
@@ -65,36 +61,31 @@ export default class Login extends Component {
                 />
                 <FastLoginView/>
             </ImageBackground>
-        </Modal>
         )
     }
 
+    _onRequestClose =()=> {
+        this.setState({
+            visible: false
+        });
+    }
+
     _loginAction = ()=> {
-        AlertIOS.alert("登录");
+        // AlertIOS.alert("登录");
 
         console.log("loginResponse : " + loginResponse);
 
-        this.props.dismiss;
-        // this.setState({
-        //     visible: false
-        // })
-
-        // if (loginResponse.stausCode == 200) {
-        //     // AlertIOS.alert("登录成功");
-        //     let {navigator} = this.props;
-        //     console.log("navigator : " + navigator);
-        //
-        //     if (navigator) {
-        //         navigator.push({
-        //             component: TabBar,
-        //             params:{
-        //
-        //             }
-        //         })
-        //     }
-        //
-        // }
-
+        if (loginResponse.stausCode == 200) {
+            // AlertIOS.alert(this.props.login + "");
+            if (this.props.login != undefined) {
+                this.props.login(true);
+            } else {
+                let { navigator } = this.props
+                if (navigator) {
+                    navigator.pop()
+                }
+            }
+        }
     }
 
     _forgetPassword =()=> {

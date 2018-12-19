@@ -32,7 +32,17 @@ export default class Edit extends Component {
           dataSource:new ListView.DataSource({
             rowHasChanged:(r1,r2)=>r1!=r2,
           }),
+            isHideTabbar: true,
         };
+    }
+
+    shouldComponentUpdate(){
+        console.log("shouldComponentUpdate edit")
+        if (this.state.isHideTabbar == true) {
+            this._isHideTabbar(false);
+            return true;
+        }
+        return false;
     }
 
     componentDidMount(){
@@ -69,6 +79,11 @@ export default class Edit extends Component {
     }
 
     _isHideTabbar(isHide) {
+
+        this.setState({
+            isHideTabbar: isHide
+        })
+
         this.props.isHideTabbar(isHide);
     }
     _onClickEditItem = (rowData) => {
@@ -76,7 +91,7 @@ export default class Edit extends Component {
 
         let {navigator} = this.props;
         if (navigator) {
-            this.props.isHideTabbar(true)
+            this._isHideTabbar(true)
             navigator.push({
                 component:Transcribe,
                 params:{

@@ -50,9 +50,7 @@ export default class App extends Component<Props> {
 
     componentDidMount() {
         console.log("componentDidMount App");
-        this.setState({
-            isLogin: false
-        })
+
     }
 
     componentWillMount(){
@@ -79,108 +77,85 @@ export default class App extends Component<Props> {
     }
 
     render() {
-        return (
-        <View style={styles.container}>
-            {this._renderView()}
-        </View>
-
-        );
-    }
-
-    _renderView =()=> {
-
-
         let isLogin = this.state.isLogin;
         // AlertIOS.alert("" + isLogin);
 
         let tabNames = this.state.tabNames;
         let tabIconNames = this.state.tabIconNames;
-        let hiddenTab = this.state.hiddenTab;
+        var hiddenTab = this.state.hiddenTab;
         console.log("hiddenTab :" + hiddenTab);
+        return (
+            <ScrollabelTabView
+                renderTabBar={() => <XCTabbar
+                    visibility={false}
+                    hiddenTab={hiddenTab}
+                    tabNames={tabNames} tabIconNames={tabIconNames}/>}
+                tabBarPosition={"bottom"}
+                scrollWithoutAnimation={true}
+                locked={true}
+            >
+                {/*{this._renderView()}*/}
+                <Navigator
+                    tabLabel="list"
+                    initialRoute={{
+                        name:'list',
+                        component:List,
+                        params:{
+                            title:'视频列表',
+                            isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
+                        }
+                    }}
+                    renderScene={(route,navigator) =>
+                        <route.component {...route.params} navigator={navigator}/>}
 
-        // if (isLogin){
-            return(
-                <ScrollabelTabView
-                    renderTabBar={() => <XCTabbar
-                        visibility={false}
-                        hiddenTab={this.state.hiddenTab == true ? true:false}
-                        tabNames={tabNames} tabIconNames={tabIconNames}/>}
-                    tabBarPosition={"bottom"}
-                    scrollWithoutAnimation={true}
-                    locked={true}
-                >
-                    <Navigator
-                        tabLabel="list"
-                        initialRoute={{
-                            name:'list',
-                            component:List,
-                            params:{
-                                title:'视频列表',
-                                isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
-                            }
-                        }}
-                        renderScene={(route,navigator) =>
-                            <route.component {...route.params} navigator={navigator}/>}
+                />
 
-                    />
+                {/*<List tabLabel="list"/>*/}
 
-                    {/*<List tabLabel="list"/>*/}
+                <Navigator
+                    tabLabel="edit"
+                    initialRoute={{
+                        name:'edit',
+                        component:Edit,
+                        params:{
+                            title:'编辑',
+                            isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
+                        }
+                    }}
+                    renderScene={(route,navigator) =>
+                        <route.component {...route.params} navigator={navigator} />}
+                />
 
-                    <Navigator
-                        tabLabel="edit"
-                        initialRoute={{
-                            name:'edit',
-                            component:Edit,
-                            params:{
-                                title:'编辑',
-                                isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
-                            }
-                        }}
-                        renderScene={(route,navigator) =>
-                            <route.component {...route.params} navigator={navigator} />}
-                    />
+                {/*<Edit tabLabel="edit"/>*/}
+                <Picture tabLabel="picture"/>
 
-                    {/*<Edit tabLabel="edit"/>*/}
-                    <Picture tabLabel="picture"/>
+                <Navigator
+                    tabLabel="account"
+                    initialRoute={{
+                        name:'account',
+                        component:Account,
+                        params:{
+                            title:'我的',
+                            isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
+                        }
+                    }}
+                    renderScene={(route,navigator) =>
+                        <route.component {...route.params} navigator={navigator} />}
+                />
 
-                    <Navigator
-                        tabLabel="account"
-                        initialRoute={{
-                            name:'account',
-                            component:Account,
-                            params:{
-                                title:'我的'
-                            }
-                        }}
-                        renderScene={(route,navigator) =>
-                            <route.component {...route.params} navigator={navigator} />}
-                    />
+            </ScrollabelTabView>
 
+        );
+    }
 
-                </ScrollabelTabView>
-                )
-        // } else {
-        //     return(
-        //         <Modal
-        //             animationType='slide'           // 从底部滑入
-        //             transparent={false}             // 不透明
-        //             visible={true}>
-        //             <Navigator
-        //                 tabLabel="Login"
-        //                 initialRoute={{
-        //                     name:'Login',
-        //                     component:Login,
-        //                     params:{
-        //                         title:'登录'
-        //                     }
-        //                 }}
-        //                 renderScene={(route,navigator) =>
-        //                     <route.component {...route.params} navigator={navigator}/>}
-        //
-        //             />
-        //         </Modal>
-        //     )
-        // }
+    _loginCallBack =(isLogin)=> {
+
+        AlertIOS.alert("isLogin : " + isLogin)
+
+        this.setState({
+            isLogin: isLogin
+        })
+
     }
 
 }

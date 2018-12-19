@@ -27,8 +27,21 @@ export default class Account extends Component {
 
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds
+            dataSource: ds,
+            shouldUpdate: true
+
         }
+     }
+
+     shouldComponentUpdate(){
+
+        if (this.state.shouldUpdate == true) {
+
+            this._isHideTabbar(false)
+
+            return true
+        }
+        return false
      }
 
     componentWillMount() {
@@ -88,7 +101,16 @@ export default class Account extends Component {
         )
     }
 
+    _isHideTabbar =(isHide)=> {
+
+        this.setState({
+            shouldUpdate: isHide
+        })
+        this.props.isHideTabbar(isHide)
+    }
+
     _loginClick =()=> {
+        this._isHideTabbar(true)
         let {navigator} = this.props;
         if (navigator) {
             navigator.push({

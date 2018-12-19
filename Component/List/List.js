@@ -46,22 +46,34 @@ export default class List extends Component {
             dataSource:new ListView.DataSource({
                 rowHasChanged:(r1,r2)=>r1!==r2,
             }),
-            isLogin: false
+            isLogin: false,
+            shouldUpdate: true
         };
 
         let isLogin = this.state.isLogin;
         if (isLogin == false) {
             let {navigator} = this.props;
 
-            if (navigator) {
-                this._isHideTabbar(true)
-                navigator.push({
-                    component: Login
-                })
-            }
+            // if (navigator) {
+            //     this._isHideTabbar(true)
+            //     navigator.push({
+            //         component: Login
+            //     })
+            // }
         }
 
     }
+
+
+    shouldComponentUpdate(){
+        console.log("shouldComponentUpdate edit")
+        if (this.state.shouldUpdate == true) {
+            this._isHideTabbar(false);
+            return true;
+        }
+        return false;
+    }
+
 
     // 在子组件中对父元素props或state的改变进行监听进行相应的操作
     componentWillReceiveProps(nextProps){
@@ -180,6 +192,11 @@ export default class List extends Component {
     }
 
     _isHideTabbar(isHide) {
+
+        this.setState({
+            shouldUpdate: isHide
+        })
+
         this.props.isHideTabbar(isHide);
     }
 
