@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
         height: 60,
         marginTop: 0,
         flexDirection: 'column',
-
     },
 
     passwordTextInputContsiner: {
@@ -150,9 +149,9 @@ const styles = StyleSheet.create({
         justifyContent:'center',
     },
     textInputStyle: {
+        flex: 1,
         height: 40,
         justifyContent: 'center',
-        width: 260,
         position: 'absolute',
         marginLeft: 50,
         marginTop: 10,
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
 
     bottomLineStyle: {
         height: 1,
-        width: 300,
+        // width: 300,
         backgroundColor: '#fff',
         marginTop: 50,
         marginLeft: 50,

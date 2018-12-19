@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
         marginRight: 0,
         marginTop: 0,
         marginBottom: 0,
-        flexDirection: 'row',
+        flexDirection: 'column',
+        // justifyContent: 'space-around',
     },
     passwordIconStyle: {
         marginLeft: 12,
@@ -99,36 +100,37 @@ const styles = StyleSheet.create({
         position:'absolute',
         alignItems:'center',
         justifyContent:'center',
+        marginRight: 20,
 
     },
     textInputStyle: {
+        flex: 1,
         height: 40,
-        justifyContent: 'center',
-        width: 260,
+        // justifyContent: 'center',
+        // width: 260,
         position: 'absolute',
         marginLeft: 50,
         marginTop: 18,
-        marginRight:10,
+        // marginRight:10,
         color: '#fff',
         fontSize: 17,
         // backgroundColor: '#fff',
     },
-
-    bottomLineStyle: {
-        height: 1,
-        width: 300,
-        backgroundColor: '#fff',
-        marginTop: 50,
-        marginLeft: 50,
-
-    },
     passwordDisplay: {
         position: 'absolute',
-        marginLeft: 320,
+        marginLeft: 5,
         marginTop: 25,
         width: 30,
         height: 30,
         // backgroundColor: '#fff',
+        alignSelf: 'flex-end',
+    },
+    bottomLineStyle: {
+        height: 1,
+        backgroundColor: '#fff',
+        marginTop: 50,
+        marginLeft: 50,
+
     }
 
 
