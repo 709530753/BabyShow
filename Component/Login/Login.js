@@ -21,6 +21,10 @@ import {
     Modal
 } from 'react-native';
 
+import {
+    Navigator,
+}from 'react-native-deprecated-custom-components';
+
 import LoginHeader from './LoginHeader'
 import LoginContent from './LoginContent'
 import FastLoginView from './FastLoginView'

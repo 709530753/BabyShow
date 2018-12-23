@@ -14,6 +14,10 @@ import {
 
 } from 'react-native'
 
+import {
+    Navigator,
+}from 'react-native-deprecated-custom-components';
+
 import NavTitleView from './../../List/NavTitleView'
 import RegistContent from './RegistContent'
 
@@ -21,6 +25,7 @@ export default class Regist extends Component {
 
     render(){
         return(
+
             <ImageBackground style={styles.container}
                              source={require('./../../resources/regist/regist_bg.jpeg')}>
                 <NavTitleView
@@ -43,6 +48,7 @@ export default class Regist extends Component {
                     <Text style={styles.bottomTextStyle}>With Bast Wishs!</Text>
                 </View>
             </ImageBackground>
+
         )
     }
 

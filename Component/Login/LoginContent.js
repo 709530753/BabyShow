@@ -181,8 +181,8 @@ const styles = StyleSheet.create({
     },
 
     loginViewStyles: {
-        marginLeft: 40,
-        marginRight: 40,
+        marginLeft: 20,
+        marginRight: 20,
         height: 50,
         marginTop: 20,
         backgroundColor: '#fff',

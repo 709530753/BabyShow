@@ -42,10 +42,9 @@ export default class NavTitleView extends Component {
         let rightBarBtnItemTitle = this.props.rightBarBtnItemTitle;
         let rightBarBtnItemIcon = this.props.rightBarBtnItemIcon;
 
-
         return(
             <View style={styles.navStyle}>
-                <TouchableOpacity onPress={this.props.back} activeOpacity={1.0}>
+                <TouchableOpacity onPress={this.props.back} activeOpacity={0.9}>
 
                     <View style={[styles.backViewStyle, backgroundColor=backgroundColor]}>
                         {this._renderBackIcon(iconType)}
@@ -64,7 +63,7 @@ export default class NavTitleView extends Component {
                         {/*<Image style={styles.backIconStyle}*/}
                                {/*source={require('../resources/camera.png')}*/}
                         {/*/>*/}
-                        <Text style={styles.backStyle}>
+                        <Text style={styles.rightBarBtnTextStyle}>
                             {rightBarBtnItemTitle}
                         </Text>
                     </View>
@@ -99,19 +98,19 @@ const styles = StyleSheet.create({
         marginTop:0,
         flexDirection:'row',
         alignItems:'center',
-        // backgroundColor:'#dddddd',
+        backgroundColor:'#dddddd',
         height:64,
         width:width,
-        justifyContent:'center'
+        justifyContent:'space-between'
     },
     navTitle:{
+        flex: 1,
         fontSize:18,
         marginBottom:-15,
         textAlign:"center",
-        width:width - 160,
     },
     backViewStyle:{
-        marginLeft:-50,
+        marginLeft: 15,
         flexDirection:'row',
         width:80,
     },
@@ -130,8 +129,13 @@ const styles = StyleSheet.create({
 
     },
     rightBarBtnItem:{
-        marginRight:-180,
         flexDirection:'row',
-        width:80,
+        marginRight: 15,
+    },
+    rightBarBtnTextStyle: {
+        textAlign: 'right',
+        fontSize:18,
+        marginBottom:-15,
+        alignSelf:"flex-end",
     }
 });
