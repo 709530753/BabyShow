@@ -84,6 +84,9 @@ export default class App extends Component<Props> {
         let tabIconNames = this.state.tabIconNames;
         var hiddenTab = this.state.hiddenTab;
         console.log("hiddenTab :" + hiddenTab);
+
+        let navigator = this.props.navigator;
+
         return (
             <ScrollabelTabView
                 renderTabBar={() => <XCTabbar
@@ -94,21 +97,23 @@ export default class App extends Component<Props> {
                 scrollWithoutAnimation={true}
                 locked={true}
             >
+                <List navigator={navigator}/>
                 {/*{this._renderView()}*/}
-                <Navigator
-                    tabLabel="list"
-                    initialRoute={{
-                        name:'list',
-                        component:List,
-                        params:{
-                            title:'视频列表',
-                            isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
-                        }
-                    }}
-                    renderScene={(route,navigator) =>
-                        <route.component {...route.params} navigator={navigator}/>}
+                {/*<Navigator*/}
+                    {/*tabLabel="list"*/}
+                    {/*initialRoute={{*/}
+                        {/*name:'list',*/}
+                        {/*component:List,*/}
+                        {/*params:{*/}
+                            {/*title:'视频列表',*/}
+                            {/*navigator*/}
+                            {/*isHideTabbar:(isHide)=>this._isHideTabbar(isHide)*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*renderScene={(route,navigator) =>*/}
+                        {/*<route.component {...route.params} navigator={navigator}/>}*/}
 
-                />
+                {/*/>*/}
 
                 {/*<List tabLabel="list"/>*/}
 

@@ -104,7 +104,7 @@ export default class List extends Component {
 
     componentDidMount(){
 
-        console.log("tabbar :" + this.props.isHideTabbar);
+        // console.log("tabbar :" + this.props.isHideTabbar);
 
        this._loadData()
     }
@@ -197,15 +197,15 @@ export default class List extends Component {
             shouldUpdate: isHide
         })
 
-        this.props.isHideTabbar(isHide);
+        // this.props.isHideTabbar(isHide);
     }
 
     _loadPage(rowData) {
-        let {navigator} = this.props;
+        // let {navigator} = this.props;
 
-        if (navigator) {
-            this._isHideTabbar(true)
-            navigator.push({
+        // if (navigator) {
+        //     this._isHideTabbar(true)
+            this.props.navigator.push({
                 component:Detail,
                 params:{
                     rowData:rowData,
@@ -213,7 +213,7 @@ export default class List extends Component {
                 }
             })
         }
-    }
+    // }
 
 }
 

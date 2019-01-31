@@ -44,6 +44,7 @@
 		522BC30B21AAA4CE00048AAA /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522BC2E521AAA4B800048AAA /* libRCTCameraRoll.a */; };
 		523BA48E21BAAFA800C61DCE /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = 523BA48D21BAAFA800C61DCE /* bundle */; };
 		526F196121CF940700510571 /* FlashLight.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F196021CF940700510571 /* FlashLight.m */; };
+		52BDED0C22014DE9008663DD /* libfishhook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6841FA4F8DC00B85C8A /* libfishhook.a */; };
 		52D68497214E5BB00067AAF3 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D68494214E5B770067AAF3 /* libRCTVideo.a */; };
 		52D84D8221C61454002A360D /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 52D84D6421C61454002A360D /* UMSocialSDKResources.bundle */; };
 		52D84D8321C61454002A360D /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D84D6521C61454002A360D /* UShareUI.framework */; };
@@ -497,6 +498,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52BDED0C22014DE9008663DD /* libfishhook.a in Frameworks */,
 				52D84DD221C61C3D002A360D /* CoreTelephony.framework in Frameworks */,
 				52D84DD021C61C33002A360D /* SystemConfiguration.framework in Frameworks */,
 				52D84DCE21C61C27002A360D /* libsqlite3.tbd in Frameworks */,
@@ -1773,6 +1775,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.BabyShow;
 				PRODUCT_NAME = BabyShow;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1813,6 +1816,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.BabyShow;
 				PRODUCT_NAME = BabyShow;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -2012,7 +2016,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos11.4;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -2046,7 +2050,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos11.4;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

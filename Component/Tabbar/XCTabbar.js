@@ -36,9 +36,8 @@ export default class XCTabbar extends Component {
 
     render() {
 
-        var bottom = this.props.hiddenTab==true?-50:0;
         return (
-            <View style={[styles.tabsStyle,{marginBottom:bottom}]}>
+            <View style={styles.tabsStyle}>
                 {/*返回一个一个的Item*/}
                 {this.props.tabs.map((tab,i)=>this.renderItem(tab,i))}
             </View>

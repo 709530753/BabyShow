@@ -43,7 +43,18 @@ export default class Main extends Component {
         // AlertIOS.alert("" + isLogin);
         if (isLogin) {
             return(
-                <TabBar style={{flex:1}}/>
+            <Navigator
+                initialRoute={{
+                    component: TabBar
+                }}
+                renderScene={(route,navigator) =>
+                    <route.component {...route.params} navigator={navigator} />}
+
+                configureScene={() =>
+                    Navigator.SceneConfigs.FloatFromRight
+                }
+
+            />
             )
         } else {
             return(
