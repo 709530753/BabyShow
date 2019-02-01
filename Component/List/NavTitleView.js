@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
     rightBarBtnItem:{
         flexDirection:'row',
         marginRight: 15,
+        width:80,
     },
     rightBarBtnTextStyle: {
         textAlign: 'right',
