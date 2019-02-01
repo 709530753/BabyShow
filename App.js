@@ -62,15 +62,6 @@ export default class App extends Component<Props> {
 
     };
 
-    _isHideTabbar = (isHide)=> {
-
-        console.log("_isHideTabbar :" + isHide);
-        this.setState({
-            hiddenTab:isHide
-        })
-
-    }
-
     render() {
         let isLogin = this.state.isLogin;
         // AlertIOS.alert("" + isLogin);
