@@ -16,11 +16,14 @@ import {
     AlertIOS,
     TouchableOpacity,
     ActivityIndicator,
+    RefreshControl
 } from 'react-native';
 
 import {
     Navigator,
 }from 'react-native-deprecated-custom-components';
+import Toast, {DURATION} from 'react-native-easy-toast'
+
 
 import Item from './Item';
 
@@ -31,6 +34,8 @@ import RNAlert from './../RN-OC/RNAlert'
 import URL from './../common/url'
 
 import Login from './../Login/Login'
+import Loading from './../common/Loading'
+import LoadMoreFooter from './../common/LoadMoreFooter'
 
 var {height, width} = Dimensions.get('window');
 
@@ -47,31 +52,19 @@ export default class List extends Component {
                 rowHasChanged:(r1,r2)=>r1!==r2,
             }),
             isLogin: false,
-            shouldUpdate: true
+            shouldUpdate: true,
+            isRefreshing: false,
+            isFetching: false,
+            isNoMore: false
+
         };
-
-        let isLogin = this.state.isLogin;
-        if (isLogin == false) {
-            let {navigator} = this.props;
-
-            // if (navigator) {
-            //     this._isHideTabbar(true)
-            //     navigator.push({
-            //         component: Login
-            //     })
-            // }
-        }
 
     }
 
 
     shouldComponentUpdate(){
         console.log("shouldComponentUpdate edit")
-        if (this.state.shouldUpdate == true) {
-            this._isHideTabbar(false);
-            return true;
-        }
-        return false;
+        return true;
     }
 
 
@@ -94,7 +87,6 @@ export default class List extends Component {
     componentDidMount() {
         console.log("componentDidMount1111");
 
-
     }
 
     componentWillUnmount() {
@@ -109,8 +101,23 @@ export default class List extends Component {
        this._loadData()
     }
 
-    _loadData(){
+    _onEndReach =()=> {
+        this._loadData()
+    }
 
+    _onRefresh = () => {
+
+        this.setState({
+            isRefreshing:true
+        })
+
+        this._loadData()
+    }
+
+    _loadData(){
+        this.setState({
+            isFetching:true
+        })
         fetch(URL.list)
             .then((response) => response.json())
             .then((responseJson) => {
@@ -120,7 +127,9 @@ export default class List extends Component {
                 this.setState({
                     dataSource:this.state.dataSource.cloneWithRows(
                         responseJson.data.list
-                    )
+                    ),
+                    isRefreshing: false,
+                    isFetching:false,
                 })
 
 
@@ -132,6 +141,10 @@ export default class List extends Component {
     }
 
     render(){
+
+        let isRefreshing = this.state.isRefreshing;
+        let isFetching = this.state.isFetching;
+
         return(
 
                     <View style={styles.container}>
@@ -140,14 +153,35 @@ export default class List extends Component {
                             <Text style={styles.navTitle}>视频列表</Text>
                         </View>
 
+                        {!isFetching &&
                         <ListView
                             dataSource={this.state.dataSource}
                             renderRow={this._renderRow}
+                            renderFooter={this._renderFooter}
+                            onEndReached={this._onEndReach}
+                            onEndReachedThreshold={-50}//快到底部onEndReachedThreshold像素的时候，调用_onEndReach。
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={isRefreshing}
+                                    onRefresh={this._onRefresh}
+                                    colors={['rgb(217, 51, 58)']}
+                                />
+                            }
                         />
-
+                        }
+                        <Loading isShow={isFetching}/>
+                        <Toast ref="toast"
+                               style={{backgroundColor:'#000000'}}
+                               position='bottom'
+                               positionValue={100}
+                               opacity={0.6}
+                               textStyle={{color:'#ffffff'}}
+                        />
                     </View>
         )
     }
+
+    _renderFooter =()=>  <LoadMoreFooter isNoMore={this.state.isNoMore}/>
 
     _renderLoginView =()=> {
         let isLogin = this.state.isLogin;
@@ -191,29 +225,15 @@ export default class List extends Component {
         );
     }
 
-    _isHideTabbar(isHide) {
-
-        this.setState({
-            shouldUpdate: isHide
-        })
-
-        // this.props.isHideTabbar(isHide);
-    }
-
     _loadPage(rowData) {
-        // let {navigator} = this.props;
-
-        // if (navigator) {
-        //     this._isHideTabbar(true)
-            this.props.navigator.push({
+        // this.refs.toast.show('网络加载中...');
+        this.props.navigator.push({
                 component:Detail,
                 params:{
                     rowData:rowData,
-                    isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
                 }
             })
         }
-    // }
 
 }
 
@@ -249,5 +269,8 @@ const styles = StyleSheet.create({
         marginVertical:20,
         justifyContent:'center',
         alignItems:'center',
+    },
+    toastStyle: {
+
     }
 });

@@ -12,6 +12,7 @@ import {
     StyleSheet,
     WebView,
     Navigator,
+    ActivityIndicator
 } from 'react-native';
 
 var {height, width} = Dimensions.get('window');
@@ -50,12 +51,43 @@ export default class Detail extends Component {
         //加载网络数据
         this._loadData();
     }
+
     _loadData=()=> {
         console.log("detail");
         console.log(this.props.rowData)
 
     };
 
+
+    _onLoad =()=> {
+
+        console.log("_onLoad")
+
+    }
+
+    _onError =()=> {
+
+        console.log("_onLoad")
+
+    }
+
+    _onLoadEnd =()=> {
+
+        console.log("_onLoad")
+
+    }
+
+    _onLoadStart =()=> {
+        console.log("_onLoadStart")
+
+    }
+
+    _renderLoading =()=> {
+        console.log("_renderLoading")
+        return(
+            <ActivityIndicator/>
+        )
+    }
 
     render(){
         return(
@@ -67,7 +99,12 @@ export default class Detail extends Component {
                 <WebView
                     source={{uri:'http://www.baidu.com'}}
                     style={styles.webViewStyle}
-
+                    onload={this._onLoad()}
+                    onerror={this._onError()}
+                    onLoadEnd={this._onLoadEnd()}
+                    onLoadStart={this._onLoadStart()}
+                    startInLoadingState={true}
+                    renderLoading={this._renderLoading}
                 />
               {/*<Video*/}
                   {/*source={{uri:'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'}}*/}
@@ -88,13 +125,7 @@ export default class Detail extends Component {
     }
 
     _back(){
-        console.log("aaaaaaaaaaaaaaaaa");
-        let navigatior = this.props.navigator;
-        if (navigatior) {
-            this.props.isHideTabbar(false)
-            navigatior.pop();
-        }
-
+        this.props.navigator.pop();
     }
 
 }

@@ -13,15 +13,21 @@ import {
     View,
     ListView,
     Image,
-
+    TouchableOpacity
 } from 'react-native';
 
 export default class PictureItem extends Component {
 
     constructor(props) {
         super(props)
+
+        var getRowData = (dataBlob, sectionID, rowID) => {
+            return dataBlob[sectionID][rowID];
+        };
+
         this.state = {
             dataSource:new ListView.DataSource({
+                getRowData: getRowData,
                 rowHasChanged:(r1:r2)=>r1!=r2,
             }),
             rowData:this.props.rowData
@@ -51,16 +57,21 @@ export default class PictureItem extends Component {
         )
     }
 
-    _renderRow = (rowData) => {
-        console.log("url : " + rowData.url);
+    _renderRow = (rowData, sectionID, rowID) => {
+        console.log("sectionID : " + sectionID + "rowId : " + rowID);
         return(
-        <View style={styles.itemStyle}>
-            <Image style={styles.imageStyle}
-                   source={{uri:rowData.url}}
-            />
-        </View>
-
+        <TouchableOpacity onPress={()=>this._showPic(rowID)}>
+            <View style={styles.itemStyle}>
+                <Image style={styles.imageStyle}
+                       source={{uri:rowData.url}}
+                />
+            </View>
+        </TouchableOpacity>
         )
+    }
+
+    _showPic =(rowID)=> {
+        this.props.showPic(this.props.rowData.images, rowID)
     }
 
 }

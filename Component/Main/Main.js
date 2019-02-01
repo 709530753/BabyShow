@@ -10,8 +10,8 @@ import {
 } from 'react-native'
 
 import {
-    Navigator,
-}from 'react-native-deprecated-custom-components';
+    Navigator
+} from 'react-native-deprecated-custom-components';
 
 import Login from './../Login/Login'
 import TabBar  from './../../App'
@@ -27,6 +27,15 @@ export default class Main extends Component {
 
     componentDidMount() {
 
+    }
+
+    configureScene = route => {
+        if (route.sceneConfig) return route.sceneConfig
+
+        return {
+            ...Navigator.SceneConfigs.PushFromRight,
+            // gestures: {}    // 禁用左滑返回手势
+        }
     }
 
     render(){
@@ -49,10 +58,7 @@ export default class Main extends Component {
                 }}
                 renderScene={(route,navigator) =>
                     <route.component {...route.params} navigator={navigator} />}
-
-                configureScene={() =>
-                    Navigator.SceneConfigs.FloatFromRight
-                }
+                configureScene={this.configureScene}
 
             />
             )

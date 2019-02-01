@@ -36,15 +36,6 @@ export default class Edit extends Component {
         };
     }
 
-    shouldComponentUpdate(){
-        console.log("shouldComponentUpdate edit")
-        if (this.state.isHideTabbar == true) {
-            this._isHideTabbar(false);
-            return true;
-        }
-        return false;
-    }
-
     componentDidMount(){
 
         this.setState({
@@ -78,30 +69,15 @@ export default class Edit extends Component {
         )
     }
 
-    _isHideTabbar(isHide) {
-
-        this.setState({
-            isHideTabbar: isHide
-        })
-
-        this.props.isHideTabbar(isHide);
-    }
     _onClickEditItem = (rowData) => {
         console.log("rowData : " + rowData.title);
-
-        let {navigator} = this.props;
-        if (navigator) {
-            this._isHideTabbar(true)
-            navigator.push({
+            this.props.navigator.push({
                 component:Transcribe,
                 params:{
-                    rowData:rowData,
-                    isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
+                    rowData:rowData
                 }
             })
         }
-    }
-
 }
 
 const styles = StyleSheet.create({

@@ -17,11 +17,6 @@ import {
     AlertIOS
 } from 'react-native';
 
-import {
-    Navigator,
-}from 'react-native-deprecated-custom-components';
-
-
 import XCTabbar from './Component/Tabbar/XCTabbar'
 import List from './Component/List/List'
 import Edit from './Component/Edit/Edit'
@@ -117,36 +112,38 @@ export default class App extends Component<Props> {
 
                 {/*<List tabLabel="list"/>*/}
 
-                <Navigator
-                    tabLabel="edit"
-                    initialRoute={{
-                        name:'edit',
-                        component:Edit,
-                        params:{
-                            title:'编辑',
-                            isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
-                        }
-                    }}
-                    renderScene={(route,navigator) =>
-                        <route.component {...route.params} navigator={navigator} />}
-                />
+                <Edit navigator={navigator}/>
+                {/*<Navigator*/}
+                    {/*tabLabel="edit"*/}
+                    {/*initialRoute={{*/}
+                        {/*name:'edit',*/}
+                        {/*component:Edit,*/}
+                        {/*params:{*/}
+                            {/*title:'编辑',*/}
+                            {/*isHideTabbar:(isHide)=>this._isHideTabbar(isHide)*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*renderScene={(route,navigator) =>*/}
+                        {/*<route.component {...route.params} navigator={navigator} />}*/}
+                {/*/>*/}
 
                 {/*<Edit tabLabel="edit"/>*/}
-                <Picture tabLabel="picture"/>
+                <Picture tabLabel="picture" navigator={navigator}/>
 
-                <Navigator
-                    tabLabel="account"
-                    initialRoute={{
-                        name:'account',
-                        component:Account,
-                        params:{
-                            title:'我的',
-                            isHideTabbar:(isHide)=>this._isHideTabbar(isHide)
-                        }
-                    }}
-                    renderScene={(route,navigator) =>
-                        <route.component {...route.params} navigator={navigator} />}
-                />
+                <Account navigator={navigator}/>
+                {/*<Navigator*/}
+                    {/*tabLabel="account"*/}
+                    {/*initialRoute={{*/}
+                        {/*name:'account',*/}
+                        {/*component:Account,*/}
+                        {/*params:{*/}
+                            {/*title:'我的',*/}
+                            {/*isHideTabbar:(isHide)=>this._isHideTabbar(isHide)*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*renderScene={(route,navigator) =>*/}
+                        {/*<route.component {...route.params} navigator={navigator} />}*/}
+                {/*/>*/}
 
             </ScrollabelTabView>
 

@@ -23,8 +23,12 @@ import {
     Text,
     View,
     ListView,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
+
+import Toast from 'react-native-easy-toast'
+import LookPhotoModal from './../common/LookPhotoModal';
 
 var {height, width} = Dimensions.get('window');
 var currentSelectedIndex = 0;
@@ -105,7 +109,13 @@ export default class Picture extends Component {
                     </View>
 
                 </ScrollView>
-
+                <Toast ref="toast"
+                       style={{backgroundColor:'#000000'}}
+                       position='bottom'
+                       positionValue={100}
+                       opacity={0.8}
+                       textStyle={{color:'#ffffff'}}
+                />
             </View>
         )
     }
@@ -148,9 +158,30 @@ export default class Picture extends Component {
         return(
             <PictureItem
                 rowData={rowData}
+                showPic={this._showPic.bind(this)}
             />
         )
     };
+
+    _showPic =(rowData, rowID)=> {
+        let images = [];
+        for(let i = 0; i < rowData.length; i++) {
+            let item = rowData[i];
+            console.log("item : " + item.url);
+            images.push({
+                "url":item.url,
+            });
+        }
+
+        this.props.navigator.push({
+            component:LookPhotoModal,
+            params:{
+                urls:images,
+                index:Number(rowID)
+            }
+        })
+
+    }
 }
 
 const styles = StyleSheet.create({

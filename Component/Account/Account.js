@@ -4,6 +4,7 @@
 
 
 import React, { Component } from 'react';
+
 import NavTitleView from './../List/NavTitleView'
 import AccountHeaderView from './AccountHeaderView'
 import AccountItem from './AccountItem'
@@ -16,9 +17,12 @@ import {
     Text,
     View,
     ListView,
-    AlertIOS,
-    Navigator,
+    AlertIOS
 } from 'react-native';
+
+import {
+    Navigator,
+}from 'react-native-deprecated-custom-components';
 
 export default class Account extends Component {
 
@@ -36,9 +40,6 @@ export default class Account extends Component {
      shouldComponentUpdate(){
 
         if (this.state.shouldUpdate == true) {
-
-            this._isHideTabbar(false)
-
             return true
         }
         return false
@@ -101,22 +102,11 @@ export default class Account extends Component {
         )
     }
 
-    _isHideTabbar =(isHide)=> {
-
-        this.setState({
-            shouldUpdate: isHide
-        })
-        this.props.isHideTabbar(isHide)
-    }
-
     _loginClick =()=> {
-        this._isHideTabbar(true)
-        let {navigator} = this.props;
-        if (navigator) {
-            navigator.push({
-                component:Login
-            })
-        }
+        this.props.navigator.push({
+            component:Login,
+            sceneConfig: Navigator.SceneConfigs.FloatFromBottom
+        })
     }
 
     _itemClick() {
